@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Kairos"
+             x:Class="Kairos.MainPage"
+             BackgroundColor="#dcdbcc">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" 
+                   TargetType="Label">
+                <Setter Property="FontSize" 
+                        Value="Small" />
+                <Setter Property="TextColor" 
+                        Value="Black" />
+            </Style>
+
+            <Style x:Key="labelResultStyle" 
+                   TargetType="Label">
+                <Setter Property="FontSize" 
+                        Value="Medium" />
+                <Setter Property="Margin" 
+                        Value="10,0,0,0" />
+                <Setter Property="TextColor" 
+                        Value="#8f3f4c" />
+            </Style>
+            <Style x:Key="BoxViewStyle" 
+                   TargetType="BoxView">
+                <Setter Property="BackgroundColor" 
+                        Value="#b6bbc6" />
+            </Style>
+
+            <local:LongToDateTimeConverter x:Key="longToDateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Grid BackgroundColor="#dcdbcc" 
+              
+              Padding="5,10,5,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Weather Search" 
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   TextColor="#a55764" 
+                   FontAttributes="Bold" 
+                   FontSize="Large"
+                   TextDecorations="Underline"/>
+
+            <Entry x:Name="_cityEntry"
+                   Grid.Row="1" 
+                   Grid.Column="0"
+                  
+                   Margin="5,0"
+                   VerticalOptions="Center"
+                   BackgroundColor="#a55764"
+                   TextColor="#323040"
+                   Text=""
+                   Placeholder="Type your city here..."
+                   PlaceholderColor="#e3dfd3"/>
+
+            <Button Grid.Row="1" 
+                    Grid.Column="1"
+                    Text="Go" 
+                    BorderWidth="1"
+                    BorderColor="#b09494"
+                    BackgroundColor="#a55764"
+                    TextColor="#323040"
+                    Clicked="OnGoButtonClicked" />
+
+        </Grid>
+
+        <Grid Margin="4" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#bdd7f7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2" />
+            </Grid.ColumnDefinitions>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="0"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="2"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="4"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="6"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="8"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="10"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="12"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.ColumnSpan="5" Grid.Row="15"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.Column="0" Grid.RowSpan="16"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.Column="2" Grid.RowSpan="15"/>
+            <BoxView Style="{StaticResource BoxViewStyle}" Grid.Column="4" Grid.RowSpan="16"/>
+            <Label Text="Location" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"
+                       Style="{StaticResource labelStyle}" />
+            <Label Text="{Binding Title}" Grid.Row="1" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"
+                       Style="{StaticResource labelResultStyle}" />
+
+            <Label Text="Temperature" Grid.Row="3" Grid.Column="1"
+                       Style="{StaticResource labelStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="{Binding Main.Temperature}" Grid.Row="3" Grid.Column="3"
+                       Style="{StaticResource labelResultStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            <Label Text="Wind Speed" Grid.Row="5" Grid.Column="1"
+                       Style="{StaticResource labelStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="{Binding Wind.Speed}" Grid.Row="5" Grid.Column="3"
+                       Style="{StaticResource labelResultStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            <Label Text="Humidity" Grid.Row="7" Grid.Column="1"
+                       Style="{StaticResource labelStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="{Binding Main.Humidity}" Grid.Row="7" Grid.Column="3"
+                       Style="{StaticResource labelResultStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            <Label Text="Visibility" Grid.Row="9" Grid.Column="1"
+                       Style="{StaticResource labelStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="{Binding Kairos[0].Visibility}" Grid.Row="9" Grid.Column="3" 
+                       Style="{StaticResource labelResultStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            <Label Text="Time of Sunrise" Grid.Row="11" Grid.Column="1"
+                       Style="{StaticResource labelStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="{Binding Sys.Sunrise, Converter={StaticResource longToDateTimeConverter}}" 
+                       Grid.Row="11" Grid.Column="3"
+                       Style="{StaticResource labelResultStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+            <Label Text="Time of Sunset" Grid.Row="13" Grid.Column="1"
+                       Style="{StaticResource labelStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="{Binding Sys.Sunset, Converter={StaticResource longToDateTimeConverter}}" 
+                       Grid.Row="13" Grid.Column="3"
+                       Style="{StaticResource labelResultStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+            <Button Grid.Row="14" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Grid.RowSpan="2"
+                    Text="Refresh" 
+                    BorderWidth="1"
+                    BorderColor="#b09494"
+                    BackgroundColor="#a55764"
+                    TextColor="#323040"
+                     Clicked="OnRefButtonClicked"/>
+
+        </Grid>
+    </StackLayout>
+</ContentPage>
